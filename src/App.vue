@@ -32,10 +32,6 @@
   @import "~vue-material/dist/theme/all";
 </style>
 
-<style lang="scss" scoped>
-
-</style>
-
 <script>
   import {mapMutations} from 'vuex'
 
