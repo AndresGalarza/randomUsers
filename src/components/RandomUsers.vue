@@ -1,6 +1,6 @@
 <template >
     <div class="md-layout">
-        <aside class="md-layout-item md-size-15 md-medium-size-100">
+        <aside class="md-layout-item md-size-15 md-medium-size-100 columnOptions">
             <h2>Show/Hide Columns</h2>
             <md-checkbox v-model="columns.picture">Picture</md-checkbox>
             <md-checkbox v-model="columns.title">Title</md-checkbox>
@@ -15,8 +15,8 @@
             <md-checkbox v-model="columns.age">Age</md-checkbox>
         </aside>
         <section class="md-layout-item md-size-85 md-medium-size-100 md-scrollbar section-scroll">
-            <table>
-                <md-table>
+            <table class="fullSizeTable">
+                <md-table v-if="listUsers">
                     <md-table-toolbar>
                         <h2>Users</h2>
                     </md-table-toolbar>
@@ -55,7 +55,13 @@
                         <md-table-cell v-show="columns.age">{{user.dob.age | yearsOld}}</md-table-cell>
                         <md-table-cell ><router-link :to="'/details/'+user.email" ><md-button class="md-accent">Details</md-button></router-link></md-table-cell>
                     </md-table-row>
-
+                </md-table>
+                <md-table v-else>
+                    <md-table-toolbar>
+                        <h2>Users</h2>
+                    </md-table-toolbar>
+                    <p>Loading ...</p>
+                    <md-progress-bar md-mode="indeterminate"></md-progress-bar>
                 </md-table>
             </table>
         </section>
@@ -64,13 +70,24 @@
 
 
 <style lang="scss" scoped>
-    .md-checkbox {
+    .md-checkbox{
         display: flex;
     }
 
-    .section-scroll{
+    .section-scroll {
         overflow-x: auto;
     }
+    .columnOptions .md-checkbox {
+        @media screen and (max-width: 1280px) {
+            display: inline-flex;
+        }
+    }
+
+    .fullSizeTable{
+        width: 100%;
+    }
+
+
 </style>
 
 <script>

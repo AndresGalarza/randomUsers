@@ -77,6 +77,9 @@
             </md-list>
         </div>
     </div>
+    <div v-else>
+        404 User not found
+    </div>
 </template>
 
 

@@ -24,6 +24,7 @@ export default new Vuex.Store({
   },
   mutations: {
     getListUsers(state) {
+      state.listUsers = null
       fetch("https://randomuser.me/api/?results=10").then(function (response) {
           return response.json();
         }).then(function(data){
@@ -35,7 +36,7 @@ export default new Vuex.Store({
         const userId = router.currentRoute.params.userId;
         state.currentUser = state.listUsers.filter(user => user.email == userId)[0]
       }catch (e) {
-        router.push({ path: '/' })
+        console.error("404, user not found")
       }
 
     }
