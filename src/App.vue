@@ -33,7 +33,7 @@
 </style>
 
 <script>
-  import {mapMutations} from 'vuex'
+  import {mapMutations, mapActions} from 'vuex'
 
   export default {
     name: 'Overlap',
@@ -46,10 +46,12 @@
       }
     },
     methods:{
-      ...mapMutations(['getListUsers'])
+      ...mapMutations(['getListUsers']),
+      ...mapActions(['getSomeApi'])
     },
     created() {
       this.getListUsers()
+      this.getSomeApi()
     }
   }
 </script>

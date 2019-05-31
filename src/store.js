@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import router from '@/router'
+import Axios from 'axios';
 
 Vue.use(Vuex);
 
@@ -42,6 +43,26 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    getSomeApi(){
+      console.log('chompa')
+      var serviceRoot = 'https://services.odata.org/v4/TripPinServiceRW/';
+      var headers = { 'Content-Type': 'application/json', Accept: 'application/json' };
+      const params = new URLSearchParams();
+      params.append('UserName', 'russellwhyte');
+      //params.append('param2', 'value2');
+      var request = {
+          url: serviceRoot + 'People',
+          method: 'GET',
+          headers: headers,
+          data: params
+      };
 
+      Axios(request).then(function (response) {
+        console.log(response);
+      }).catch(function (error) {
+        console.log(error);
+      })
+
+    }
   }
 })
